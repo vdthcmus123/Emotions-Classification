@@ -1,1 +1,78 @@
-# Emotions-Classification
+# Emotion AI: Hệ thống Phân loại Cảm xúc dựa trên kiến trúc Transformer
+
+Dự án này là đồ án cuối kỳ cho môn học **Học Thống kê** (Statistical Learning). Mục tiêu của dự án là xây dựng một ứng dụng phân loại cảm xúc người dùng từ văn bản tiếng Anh bằng cách tinh chỉnh mô hình Transformer (BERT).
+
+##  Tính năng chính
+* **Mô hình AI mạnh mẽ**: Sử dụng `BERT-base-uncased` được tinh chỉnh trên tập dữ liệu `dair-ai/emotion`.
+* **Phân loại 6 nhãn cảm xúc**: Sadness, Joy, Love, Anger, Fear, Surprise.
+* **Kiến trúc Server-Client**:
+    * **Backend**: FastAPI xử lý logic inference (dự đoán) mô hình.
+    * **Frontend**: Streamlit cung cấp giao diện chatbot tương tác thời gian thực.
+
+##  Cấu trúc thư mục
+```text
+Emotions-Classification/
+├── backend/                # API Server (FastAPI)
+│   ├── main.py             # Script chạy server
+│   └── requirements.txt    # Thư viện cho backend
+├── frontend/               # Giao diện người dùng (Streamlit)
+│   ├── app.py              # Script chạy giao diện chatbot
+│   └── requirements.txt    # Thư viện cho frontend
+├── model/                 # Lưu trữ trọng số mô hình
+│   └── bert_emotion/       # Thư mục chứa config.json, model.safetensors...
+├── notebooks/              # Quá trình huấn luyện mô hình
+│   └── notebook.ipynb      # File huấn luyện (Kaggle/Colab)
+└── README.md               # Hướng dẫn dự án
+```
+
+## Yêu cầu hệ thống
+- Python: 3.9 trở lên.
+- RAM: Tối thiểu 4GB (Khuyên dùng 8GB để load mô hình mượt mà).
+- GPU: Không bắt buộc (Inference chạy tốt trên CPU).
+
+## Hướng dẫn cài đặt và khởi chạy
+- Bước 1: Chuẩn bị mô hình: Đảm bảo đã tải các file trọng số mô hình (model.safetensors, config.json, tokenizer.json,...) vào thư mục model.
+
+- Bước 2: Khởi chạy Backend
+Mở terminal tại thư mục dự án: backend chạy tại port 8000
+```bash
+cd backend
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+```
+- Bước 3: Khởi chạy Frontend
+Mở một terminal mới: frontend chạy tại port 8501
+```bash
+cd frontend
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+
+## Thông tin mô hình và Tập dữ liệu
+- Tập dữ liệu: dair-ai/emotion (16,000 mẫu train, 2,000 mẫu val, 2,000 mẫu test).
+
+- Kiến trúc: BERT-base-uncased.
+
+- Kỹ thuật tối ưu: Sử dụng WeightedTrainer để xử lý mất cân bằng nhãn.
+
+- Threshold Tuning để cải thiện F1-Score cho các lớp cảm xúc hiếm gặp.
+
+- Hiệu năng: Đạt Accuracy khoảng 93% trên tập test.
+
+## Nhóm thực hiện
+|MSSV|Họ và Tên|
+|----|---------|
+|23120093|Vũ Duy Thụ|
+|23120089|Đỗ Quốc Thịnh|
+|23120153|Cù Văn Nhựt|
+
+Giáo viên lý thuyết: TS. Ngô Minh Nhựt
+
+Giáo viên thực hành: Thầy Lê Long Quốc
+
+Đơn vị: Trường Đại học Khoa học Tự nhiên - VNUHCM (HCMUS).
