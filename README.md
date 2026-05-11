@@ -52,7 +52,14 @@ python -m venv .venv
 pip install -r requirements.txt
 streamlit run app.py
 ```
-
+## Chạy đơn giản với duy nhất 1 lệnh 
+- Điều hướng vào folder `Emotions-Classification`, lần đầu tiên chạy
+```bash
+docker-compose up --build
+```
+- Các lần chạy sau đó, chỉ cần chạy **docker-compose up**
+- Nếu có thay đổi về thư viện trong ``requirements.txt`` thì chạy lại **docker-compose up --build**
+- Nếu có thay đổi về frontend hoặc backend thì chạy lại **docker-compose restart frontend/backend**
 
 ## Thông tin mô hình và Tập dữ liệu
 - Tập dữ liệu: dair-ai/emotion (16,000 mẫu train, 2,000 mẫu val, 2,000 mẫu test).
