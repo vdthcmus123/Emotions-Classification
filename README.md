@@ -14,15 +14,17 @@ Dự án này là đồ án cuối kỳ cho môn học **Học Thống kê** (St
 Emotions-Classification/
 ├── backend/                # API Server (FastAPI)
 │   ├── main.py             # Script chạy server
-│   └── requirements.txt 
+|   ├── requirements.txt     
+│   └── Dockerfile
 ├── frontend/               # UI (Streamlit)
 │   ├── app.py              # Script chạy giao diện chatbot
-│   └── requirements.txt   
-├── model/                  # Nơi chứa model sau khi tải từ link.txt     
-│           
+│   ├── requirements.txt
+|   └── Dockerfile  
+├── model/                  # Nơi chứa model sau khi tải từ link.txt             
 ├── notebooks/              
 │   └── notebook.ipynb      # File huấn luyện (Kaggle/Colab)
 ├── README.md               # Hướng dẫn dự án
+├── docker-compose.yml
 └── link.txt                # Link drive để tải trọng số model: config.json, modelsafetensors...  
 ```
 
