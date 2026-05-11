@@ -14,15 +14,16 @@ Dự án này là đồ án cuối kỳ cho môn học **Học Thống kê** (St
 Emotions-Classification/
 ├── backend/                # API Server (FastAPI)
 │   ├── main.py             # Script chạy server
-│   └── requirements.txt    # Thư viện cho backend
-├── frontend/               # Giao diện người dùng (Streamlit)
+│   └── requirements.txt 
+├── frontend/               # UI (Streamlit)
 │   ├── app.py              # Script chạy giao diện chatbot
-│   └── requirements.txt    # Thư viện cho frontend
-├── model/                 # Lưu trữ trọng số mô hình
-│   └── bert_emotion/       # Thư mục chứa config.json, model.safetensors...
-├── notebooks/              # Quá trình huấn luyện mô hình
+│   └── requirements.txt   
+├── model/                  # Nơi chứa model sau khi tải từ link.txt     
+│           
+├── notebooks/              
 │   └── notebook.ipynb      # File huấn luyện (Kaggle/Colab)
-└── README.md               # Hướng dẫn dự án
+├── README.md               # Hướng dẫn dự án
+└── link.txt                # Link drive để tải trọng số model: config.json, modelsafetensors...  
 ```
 
 ## Yêu cầu hệ thống
@@ -31,10 +32,10 @@ Emotions-Classification/
 - GPU: Không bắt buộc (Inference chạy tốt trên CPU).
 
 ## Hướng dẫn cài đặt và khởi chạy
-- Bước 1: Chuẩn bị mô hình: Đảm bảo đã tải các file trọng số mô hình (model.safetensors, config.json, tokenizer.json,...) vào thư mục model.
+- Bước 1: Chuẩn bị mô hình: Đảm bảo đã tải các file trọng số mô hình (model.safetensors, config.json, tokenizer.json,...) từ `link.txt` vào thư mục `model/`.
 
 - Bước 2: Khởi chạy Backend
-Mở terminal tại thư mục dự án: backend chạy tại port 8000
+Mở terminal tại thư mục dự án: backend chạy localhost tại port 8000
 ```bash
 cd backend
 python -m venv .venv
@@ -43,7 +44,7 @@ pip install -r requirements.txt
 uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
 - Bước 3: Khởi chạy Frontend
-Mở một terminal mới: frontend chạy tại port 8501
+Mở một terminal mới: frontend chạy localhost tại port 8501
 ```bash
 cd frontend
 python -m venv .venv
