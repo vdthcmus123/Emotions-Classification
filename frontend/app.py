@@ -1,6 +1,8 @@
 import streamlit as st
 import requests
+import os
 
+BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000")
 st.set_page_config(
     page_title="Emotion AI Chatbot",
     page_icon="🎭",
@@ -102,7 +104,7 @@ if prompt := st.chat_input("How do you feel today?"):
     # Call API Backend
     try:
         with st.spinner("Analyzing emotion..."):
-            response = requests.post("http://localhost:8000/predict", json={"text": prompt})
+            response = requests.post(f"{BACKEND_URL}/predict", json={"text": prompt})
 
         if response.status_code == 200:
             result   = response.json()
