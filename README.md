@@ -34,9 +34,14 @@ Emotions-Classification/
 - GPU: Không bắt buộc (Inference chạy tốt trên CPU).
 
 ## Hướng dẫn cài đặt và khởi chạy
+```bash
+git clone https://github.com/vdthcmus123/Emotions-Classification.git
+cd Emotions-Classification
+```
+
 - Bước 1: Chuẩn bị mô hình: Đảm bảo đã tải các file trọng số mô hình (model.safetensors, config.json, tokenizer.json,...) từ `link.txt` vào thư mục `model/`.
 
-- Bước 2: Khởi chạy Backend
+- Bước 2: Khởi chạy Backend: 
 Mở terminal tại thư mục dự án: backend chạy localhost tại port 8000
 ```bash
 cd backend
@@ -45,7 +50,7 @@ python -m venv .venv
 pip install -r requirements.txt
 uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
-- Bước 3: Khởi chạy Frontend
+- Bước 3: Khởi chạy Frontend: 
 Mở một terminal mới: frontend chạy localhost tại port 8501
 ```bash
 cd frontend
@@ -62,6 +67,7 @@ docker-compose up --build
 - Các lần chạy sau đó, chỉ cần chạy **docker-compose up**
 - Nếu có thay đổi về thư viện trong ``requirements.txt`` thì chạy lại **docker-compose up --build**
 - Nếu có thay đổi về frontend hoặc backend thì chạy lại **docker-compose restart frontend/backend**
+- Ứng dụng khởi chạy tại http://localhost:8501
 
 ## Thông tin mô hình và Tập dữ liệu
 - Tập dữ liệu: dair-ai/emotion (16,000 mẫu train, 2,000 mẫu val, 2,000 mẫu test).
