@@ -124,7 +124,7 @@ if prompt := st.chat_input("How do you feel today?"):
             with st.chat_message("assistant"):
                 st.markdown(bot_response)
                 st.progress(score, text=f"Confidence Score: {score:.2%}")
-                st.markdown("**Biểu đồ phân bổ cảm xúc:**")
+                st.markdown("**Emotion Distribution:**")
                 st.bar_chart(all_probs)
 
             active["messages"].append({"role": "assistant", "content": bot_response})
