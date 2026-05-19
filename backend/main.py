@@ -19,13 +19,16 @@ async def predict_emotion(request: TextRequest):
     with torch.no_grad():
         outputs = model(**inputs)
     
-    probs = torch.nn.functional.softmax(outputs.logits, dim=-1)
-    confidence, predicted_class = torch.max(probs, dim=-1)
+    probs = torch.nn.functional.softmax(outputs.logits, dim=-1)[0]
     
     # Map ID to emotion label
     labels = ["sadness", "joy", "love", "anger", "fear", "surprise"]
     
+    all_probs = {labels[i]: float(probs[i].item()) for i in range(len(labels))}
+    predicted_class = torch.argmax(probs).item()
+    
     return {
-        "emotion": labels[predicted_class.item()],
-        "confidence": float(confidence.item())
+        "emotion": labels[predicted_class],
+        "confidence": float(probs[predicted_class].item()),
+        "all_probs": all_probs
     }
