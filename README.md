@@ -20,7 +20,8 @@ Emotions-Classification/
 │   ├── app.py              # Script chạy giao diện chatbot
 │   ├── requirements.txt
 |   └── Dockerfile  
-├── model/                  # Nơi chứa model sau khi tải từ link.txt             
+├── model/                  # Nơi chứa model sau khi tải từ link.txt
+├── dataset/                # Bộ dữ liệu chính            
 ├── notebooks/              
 │   └── notebook.ipynb      # File huấn luyện (Kaggle/Colab)
 ├── README.md               # Hướng dẫn dự án
