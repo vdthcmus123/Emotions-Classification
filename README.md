@@ -73,13 +73,16 @@ docker-compose up --build
 ## Thông tin mô hình và Tập dữ liệu
 - Tập dữ liệu: dair-ai/emotion (16,000 mẫu train, 2,000 mẫu val, 2,000 mẫu test).
 
-- Kiến trúc: BERT-base-uncased.
+- Kiến trúc mô hình: bhadresh-savani/bert-base-uncased-emotion với tổng cộng 109,486,854 tham số. Nhóm thực hiện quá trình Full Fine-tuning toàn vẹn trên tất cả các lớp tham số.
 
-- Kỹ thuật tối ưu: Sử dụng WeightedTrainer để xử lý mất cân bằng nhãn.
-
-- Threshold Tuning để cải thiện F1-Score cho các lớp cảm xúc hiếm gặp.
-
-- Hiệu năng: Đạt Accuracy khoảng 93% trên tập test.
+- Kỹ thuật tối ưu & Chiến lược huấn luyện:
+   - Xử lý mất cân bằng nhãn: Triển khai lớp kế thừa WeightedTrainer sửa đổi phương thức compute_loss. Sử dụng hàm phạt Weighted Cross Entropy Loss với trọng số tính theo nghịch đảo tần suất xuất hiện thực tế (Inverse Frequency), kết hợp kỹ thuật làm mịn nhãn (Label Smoothing = 0.05).
+   - Tránh Overfitting: Áp dụng bộ điều chỉnh tốc độ học Cosine Learning Rate Scheduler và chiến lược dừng sớm (Early Stopping với patience = 10) dựa trên thước đo eval_f1_macro làm trọng tâm. Mô hình tự động dừng và lấy checkpoint tối ưu nhất tại step 350.
+     
+- Hiệu năng thực nghiệm (trên Test Set độc lập):
+   - Accuracy: 92.80% (Tỷ lệ phân loại chính xác toàn cục).
+   - F1-Score Macro: 0.8852 (Đại diện cho độ cân bằng giữa các lớp cảm xúc, đặc biệt là các lớp thiểu số).
+   - ROC-AUC Macro: 0.9955 (Khả năng phân tách tổng quát giữa các vùng cảm xúc cực kỳ mạnh mẽ). 
 
 ## Nhóm thực hiện
 |MSSV|Họ và Tên|
