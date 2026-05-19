@@ -25,6 +25,7 @@ Emotions-Classification/
 │   └── notebook.ipynb      # File huấn luyện (Kaggle/Colab)
 ├── README.md               # Hướng dẫn dự án
 ├── docker-compose.yml
+├── final-report.pdf        # báo cáo đồ án
 └── link.txt                # Link drive để tải trọng số model: config.json, modelsafetensors...  
 ```
 
